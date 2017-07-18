@@ -539,12 +539,15 @@ def filter_list(slist, filter_string):
     contents = filter_string.split(' ')
     contents = list(set(contents))
     objs = slist.keys()
+    objs_set = set(objs)
     newobjs = []
     for content in contents:
+        newobjs = []
         for obj in objs:
             if content in obj:
                 newobjs.append(obj)
-    newobjs = list(set(newobjs))
+        objs_set = objs_set & set(newobjs)
+    newobjs = list(newobjs)
     new_dict = {}
     for newobj in newobjs:
         new_dict[newobj] = slist[newobj]
