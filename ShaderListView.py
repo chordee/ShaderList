@@ -218,14 +218,12 @@ class ShaderListView(QMainWindow):
         self.renew_tree()
 
     def filter_list(self):
-        if self.filter_lineEdit.text() != '':
-            self.proxyModel = ProxyModel()
-            self.treeModel = TreeModel(self.slist, rootTypeObj = self.rootTypeObj, filter_string = self.filter_lineEdit.text())
-            self.proxyModel.setSourceModel(self.treeModel)
-            self.tree.setModel(self.proxyModel)
-            self.tree.expandAll()
-        else:
-            pass
+        filter_string = self.filter_lineEdit.text()
+        self.proxyModel = ProxyModel()
+        self.treeModel = TreeModel(self.slist, rootTypeObj = self.rootTypeObj, filter_string = filter_string)
+        self.proxyModel.setSourceModel(self.treeModel)
+        self.tree.setModel(self.proxyModel)
+        self.tree.expandAll()
 
 
     def replace_objs_ns(self):
