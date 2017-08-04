@@ -5,9 +5,15 @@ import maya.cmds as cmds
 import maya.api.OpenMaya as om
 import maya.utils as utils
 from maya import OpenMayaUI as omui
-from shiboken import wrapInstance 
-from PySide.QtGui import *
-from PySide.QtCore import *
+try:
+    from PySide2.QtCore import * 
+    from PySide2.QtGui import * 
+    from PySide2.QtWidgets import *
+    from shiboken2 import wrapInstance
+except ImportError:
+    from PySide.QtCore import *
+    from PySide.QtGui import *
+    from shiboken import wrapInstance
 
 class ShaderListFileMaya(ShaderList.ShaderListFile):
     def __init__(self, *args, **kwargs):
